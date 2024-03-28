@@ -82,7 +82,12 @@ selected_type = st.selectbox(
     "Select the recommendation type",
     rectype   
 )
-
+if selected_type=="Collaborative Based" or selected_type=="Hybrid":
+    selected_user = st.selectbox(
+        "Select your UserID",
+        users_list
+    )
+     
 n_rec = st.slider('Slide to see more recommendations ', min_value=5, max_value=25)
 
 if st.button('Show Recommendations'):
@@ -95,10 +100,6 @@ if st.button('Show Recommendations'):
                     st.image(movie_poster)
     elif selected_type=="Collaborative Based":
             cols = st.columns(n_rec)
-            selected_user = st.selectbox(
-                "Select your UserID",
-                users_list
-            )
             recommended_movie_names,recommended_movie_posters = get_cf_ids(selected_user, n_rec)
             for i, (movie_name, movie_poster) in enumerate(zip(recommended_movie_names, recommended_movie_posters)):
                 with cols[i]:
@@ -113,10 +114,6 @@ if st.button('Show Recommendations'):
                     st.image(movie_poster)
     else:
             cols = st.columns(n_rec)
-            selected_user = st.selectbox(
-                "Select your UserID",
-                users_list
-            )
             recommended_movie_names,recommended_movie_posters = recommend(selected_movie, n_rec)
             recommended_movie_names1, recommended_movie_posters1 = get_cf_ids(selected_user, n_rec)
             recommended_movie_names2, recommended_movie_posters2 = popularity_based(pop_id, n_rec)
@@ -124,6 +121,7 @@ if st.button('Show Recommendations'):
                 with cols[i]:
                     st.text(movie_name)
                     st.image(movie_poster)
+
             for i, (movie_name, movie_poster) in enumerate(zip(recommended_movie_names1, recommended_movie_posters1)):
                 with cols[i]:
                     st.text(movie_name)

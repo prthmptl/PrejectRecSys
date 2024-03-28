@@ -98,21 +98,21 @@ if st.button('Show Recommendations'):
                 with cols[i]:
                     st.text(movie_name)
                     st.image(movie_poster)
-    if selected_type=="Collaborative Based":
+    elif selected_type=="Collaborative Based":
             cols = st.columns(n_rec)
             recommended_movie_names,recommended_movie_posters = get_cf_ids(selected_user, n_rec)
             for i, (movie_name, movie_poster) in enumerate(zip(recommended_movie_names, recommended_movie_posters)):
                 with cols[i]:
                     st.text(movie_name)
                     st.image(movie_poster)
-    if selected_type=="Trending":
+    elif selected_type=="Trending":
             cols = st.columns(n_rec)
             recommended_movie_names,recommended_movie_posters = popularity_based(pop_id, n_rec)
             for i, (movie_name, movie_poster) in enumerate(zip(recommended_movie_names, recommended_movie_posters)):
                 with cols[i]:
                     st.text(movie_name)
                     st.image(movie_poster)
-    if selected_type=="Hybrid":
+    else:
             cols = st.columns(n_rec)
             recommended_movie_names,recommended_movie_posters = recommend(selected_movie, n_rec)
             recommended_movie_names1, recommended_movie_posters1 = get_cf_ids(selected_user, n_rec)
@@ -121,6 +121,7 @@ if st.button('Show Recommendations'):
                 with cols[i]:
                     st.text(movie_name)
                     st.image(movie_poster)
+
             for i, (movie_name, movie_poster) in enumerate(zip(recommended_movie_names1, recommended_movie_posters1)):
                 with cols[i]:
                     st.text(movie_name)

@@ -77,11 +77,6 @@ selected_movie = st.selectbox(
     movie_list
 )
 
-selected_user = st.selectbox(
-    "Select your UserID",
-    users_list
-)
-
 rectype = ["Content Based", "Collaborative Based", "Trending", "Hybrid"]
 selected_type = st.selectbox(
     "Select the recommendation type",
@@ -100,6 +95,10 @@ if st.button('Show Recommendations'):
                     st.image(movie_poster)
     elif selected_type=="Collaborative Based":
             cols = st.columns(n_rec)
+            selected_user = st.selectbox(
+                "Select your UserID",
+                users_list
+            )
             recommended_movie_names,recommended_movie_posters = get_cf_ids(selected_user, n_rec)
             for i, (movie_name, movie_poster) in enumerate(zip(recommended_movie_names, recommended_movie_posters)):
                 with cols[i]:
@@ -114,6 +113,10 @@ if st.button('Show Recommendations'):
                     st.image(movie_poster)
     else:
             cols = st.columns(n_rec)
+            selected_user = st.selectbox(
+                "Select your UserID",
+                users_list
+            )
             recommended_movie_names,recommended_movie_posters = recommend(selected_movie, n_rec)
             recommended_movie_names1, recommended_movie_posters1 = get_cf_ids(selected_user, n_rec)
             recommended_movie_names2, recommended_movie_posters2 = popularity_based(pop_id, n_rec)

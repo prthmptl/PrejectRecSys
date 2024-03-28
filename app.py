@@ -82,6 +82,7 @@ selected_type = st.selectbox(
     "Select the recommendation type",
     rectype   
 )
+
 if selected_type=="Collaborative Based" or selected_type=="Hybrid":
     selected_user = st.selectbox(
         "Select your UserID",

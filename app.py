@@ -77,7 +77,7 @@ selected_type = st.selectbox(
     rectype   
 )
 
-if selected_type=="Content Based":
+if selected_type=="Content Based" or selected_type=="Hybrid":
     movie_list = movies['title'].values
     selected_movie = st.selectbox(
         "Select a movie from the dropdown",

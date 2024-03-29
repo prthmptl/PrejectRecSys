@@ -71,23 +71,27 @@ users_list = pickle.load(open('model/user-list.pkl', 'rb'))
 svd_model = pickle.load(open('model/svd-model.pkl', 'rb'))
 pop_id = pickle.load(open('model/pop-id.pkl', 'rb'))
 
-movie_list = movies['title'].values
-selected_movie = st.selectbox(
-    "Select a movie from the dropdown",
-    movie_list
-)
-
 rectype = ["Content Based", "Collaborative Based", "Trending", "Hybrid"]
 selected_type = st.selectbox(
     "Select the recommendation type",
     rectype   
 )
 
-if selected_type=="Collaborative Based" or selected_type=="Hybrid":
+if selected_type=="Content Based":
+    movie_list = movies['title'].values
+    selected_movie = st.selectbox(
+        "Select a movie from the dropdown",
+        movie_list
+    )
+
+elif selected_type=="Collaborative Based" or selected_type=="Hybrid":
     selected_user = st.selectbox(
         "Select your UserID",
         users_list
     )
+
+else:
+    pass
      
 n_rec = st.slider('Slide to see more recommendations ', min_value=5, max_value=25)
 

@@ -77,21 +77,31 @@ selected_type = st.selectbox(
     rectype   
 )
 
-if selected_type=="Content Based" or selected_type=="Hybrid":
+if selected_type=="Content Based":
     movie_list = movies['title'].values
     selected_movie = st.selectbox(
         "Select a movie from the dropdown",
         movie_list
     )
 
-elif selected_type=="Collaborative Based" or selected_type=="Hybrid":
+elif selected_type=="Collaborative Based":
     selected_user = st.selectbox(
         "Select your UserID",
         users_list
     )
 
-else:
-    pass
+elif selected_type=="Hybrid":
+
+    movie_list = movies['title'].values
+    selected_movie = st.selectbox(
+        "Select a movie from the dropdown",
+        movie_list
+    )
+
+    selected_user = st.selectbox(
+        "Select your UserID",
+        users_list
+    )
      
 n_rec = st.slider('Slide to see more recommendations ', min_value=5, max_value=25)
 
